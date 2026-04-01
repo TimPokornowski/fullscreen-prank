@@ -1,3 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Breach</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    font-family: monospace;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.background-scroll {
+    position: absolute;
+    width: 100%;
+    height: 200%;
+    display: flex;
+    flex-direction: column;
+    animation: scrollDown 20s linear infinite;
+}
+
+.background-scroll img {
+    width: 100%;
+    height: 33.33%;
+    object-fit: cover;
+    opacity: 0.22;
+}
+
+.text-layer {
+    position: absolute;
+    width: 100%;
+    height: 200%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    animation: scrollUp 12s linear infinite;
+}
+
+.warning {
+    font-size: 5vw;
+    color: red;
+    font-weight: bold;
+    text-shadow: 0 0 20px red;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.warning.small {
+    font-size: 3vw;
+    color: lime;
+    text-shadow: 0 0 10px lime;
+}
+
+.matrix {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: lime;
+    font-size: 18px;
+    opacity: 0.12;
+    overflow: hidden;
+    white-space: pre-wrap;
+    pointer-events: none;
+}
+
+.black-screen {
+    background: black;
+    display: none;
+}
+
+.final-screen {
+    display: none;
+}
+
+.final-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.25;
+    position: absolute;
+}
+
+.final-text {
+    position: absolute;
+    width: 100%;
+    height: 200%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    animation: scrollUp 10s linear infinite;
+}
+
+.popup {
+    position: absolute;
+    color: red;
+    font-size: 2vw;
+    font-weight: bold;
+    animation: flicker 1s infinite alternate;
+}
+
+@keyframes flicker {
+    from { opacity: 1; }
+    to { opacity: 0.3; }
+}
+
+@keyframes scrollDown {
+    from { transform: translateY(-50%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes scrollUp {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- FIRST SCREEN -->
+    <div class="screen" id="mainScreen">
+
+        <div class="background-scroll">
+            <img src="img1.jpg">
+            <img src="img2.jpg">
+            <img src="img3.jpg">
+            <img src="img1.jpg">
+            <img src="img2.jpg">
+            <img src="img3.jpg">
+        </div>
+
+        <div class="text-layer">
+            <div class="warning">WE KNOW YOU LUKE</div>
+            <div class="warning small">WE KNOW WHAT YOU HAVE DONE</div>
+            <div class="warning">WE KNOW YOU LUKE</div>
+            <div class="warning small">WE KNOW WHAT YOU HAVE DONE</div>
+            <div class="warning">WE KNOW YOU LUKE</div>
+            <div class="warning small">WE KNOW WHAT YOU HAVE DONE</div>
+        </div>
+
+        <div class="matrix" id="matrix"></div>
+
+    </div>
+
+    <!-- BLACK SCREEN -->
+    <div class="screen black-screen" id="blackScreen"></div>
+
+    <!-- FINAL SCREEN -->
+    <div class="screen final-screen" id="finalScreen">
+        <img src="img4.jpg">
+
+        <div class="final-text">
+            <div class="warning">WE WILL FIND YOU</div>
+            <div class="warning">WE WILL FIND YOU</div>
+            <div class="warning">WE WILL FIND YOU</div>
+        </div>
+    </div>
+
+</div>
+
 <script>
 const matrix = document.getElementById("matrix");
 
@@ -57,3 +238,6 @@ window.onload = () => {
 document.addEventListener("click", launchFullscreen);
 document.addEventListener("keydown", launchFullscreen);
 </script>
+
+</body>
+</html>
