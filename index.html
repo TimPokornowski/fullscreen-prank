@@ -1,0 +1,59 @@
+<script>
+const matrix = document.getElementById("matrix");
+
+function generateMatrix() {
+    let text = "";
+    const chars = "010101010101010101HACKEDACCESSDENIED";
+    for(let i=0; i<2000; i++) {
+        text += chars[Math.floor(Math.random()*chars.length)];
+        if(i % 80 === 0) text += "\\n";
+    }
+    matrix.textContent = text;
+}
+setInterval(generateMatrix, 200);
+generateMatrix();
+
+function createPopup() {
+    const popup = document.createElement("div");
+    popup.className = "popup";
+    popup.innerText = Math.random() > 0.5 ? "WE KNOW YOU LUKE" : "WE KNOW WHAT YOU HAVE DONE";
+
+    popup.style.left = Math.random() * 90 + "vw";
+    popup.style.top = Math.random() * 90 + "vh";
+
+    document.body.appendChild(popup);
+
+    setTimeout(() => popup.remove(), 2000);
+}
+setInterval(createPopup, 300);
+
+setTimeout(() => {
+    document.getElementById("mainScreen").style.display = "none";
+    document.getElementById("blackScreen").style.display = "block";
+
+    setTimeout(() => {
+        document.getElementById("blackScreen").style.display = "none";
+        document.getElementById("finalScreen").style.display = "block";
+    }, 2000);
+
+}, 5000);
+
+function launchFullscreen() {
+    const elem = document.documentElement;
+
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+    }
+}
+
+window.onload = () => {
+    launchFullscreen();
+};
+
+document.addEventListener("click", launchFullscreen);
+document.addEventListener("keydown", launchFullscreen);
+</script>
